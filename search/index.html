@@ -1,10 +1,12 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
     <meta charset="utf-8" />
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>关于 | IceGiraffe&#39;s Blog</title>
+<title>搜索 | IceGiraffe&#39;s Blog</title>
 
 <link rel="shortcut icon" href="https://icegiraffe.github.io/favicon.ico?v=1623985328131">
 
@@ -33,11 +35,21 @@
 <!--<script src="media/scripts/index.js"></script>-->
 
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.0/dist/fuse.basic.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ejs@3.1.3/ejs.min.js"></script>
+    <script src="https://icegiraffe.github.io/media/gridea-search/gridea-search.js"></script>
+    <script src="https://icegiraffe.github.io/media/gridea-search/result-template.ejs" type="text/ejs"></script>
 </head>
+
 <body>
-<div class="main gt-bg-theme-color-first">
-    <nav class="navbar navbar-expand-lg">
+    <style>
+        .searched-keyword {
+            background-color: yellow;
+            color: red;
+        }
+    </style>
+    <div class="main gt-bg-theme-color-first">
+        <nav class="navbar navbar-expand-lg">
     <div class="navbar-brand">
         <img class="user-avatar" src="/images/avatar.png" alt="头像">
         <div class="site-name gt-c-content-color-first">
@@ -104,39 +116,16 @@
         }
     }
 </script>
-    <div class="post-container">
-        <div class="post-detail gt-bg-theme-color-second">
-            <article class="gt-post-content">
-                <h2 class="post-title">
-                    关于
-                </h2>
-                <div class="post-info">
-                    <time class="post-time gt-c-content-color-first">
-                        · 2021-06-18 ·
-                    </time>
-                    
-                </div>
-                <div class="post-content">
-                    <ul>
-<li>我爱学习，学习爱我。</li>
-<li>这是IceGiraffe的个人博客，用来记录生活、学习与工作中值得记录的人与事。</li>
-<li>关于IceGiraffe的由来<br>
-在爱迪奥特曼最后一集中，大山队长最终发现了失的猛的真实身份，要知道，爱迪奥特曼的真实身份如果被发现，那么奥特曼将永远离开地球。大山队长始终认为人类应当能够独自抵御来自外太空的怪兽侵扰，而不应该依赖奥特曼还保护人类的家园。因此，在最后的战斗中，大山队长要求矢的猛不要变身成为爱迪作战，而是要UGM通力合作，最终凭借智慧与勇气战胜了冷冻怪兽玛格顿。玛格顿并非强力怪兽，也许这也是暗示来自外太空的怪兽已经是强弩之末，但人类独自战胜玛格顿确实是一个里程碑式的事件，在此战役后，本次怪兽频发期结束，地球进入了长期的和平时期。说会怪兽玛格顿，作为冷冻怪兽，它有能力冷冻一切，故事便是从“长颈鹿和大象都冻成冰块”开始的。</li>
-<li>本站使用Gridea搭建。</li>
-</ul>
-
-                </div>
-            </article>
+        <div id="gridea-search-result" data-update="1623985328131">
+            <div class="searching" style="font-size: 18px; margin-top: 50px;">
+                <i class="fa fa-sync-alt fa-spin"></i>&nbsp;&nbsp;搜索中......
+                <br><br>
+                <span style="font-size: 65%; color: #aaa">第一次搜索可能需要耗费较长时间构建索引，请耐心等待...</span>
+            </div>
+            <div class="no-result" style="display:none; font-size: 20px; margin-top: 50px;">
+                <i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp;未搜索到相关文章，请更换关键词
+            </div>
         </div>
-
-        
-
-        
-
-        
-
-        
-
         <div class="site-footer gt-c-content-color-first">
     <div class="slogan gt-c-content-color-first">长颈鹿和大象都冻成冰块了！</div>
     <div class="social-container">
@@ -168,6 +157,6 @@
 </script>
 
     </div>
-</div>
 </body>
+
 </html>
