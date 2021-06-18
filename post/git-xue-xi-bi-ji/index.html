@@ -6,7 +6,7 @@
 
 <title>Git学习笔记 | IceGiraffe&#39;s Blog</title>
 
-<link rel="shortcut icon" href="https://icegiraffe.github.io/favicon.ico?v=1623985380947">
+<link rel="shortcut icon" href="https://icegiraffe.github.io/favicon.ico?v=1623985520956">
 
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://icegiraffe.github.io/styles/main.css">
@@ -85,7 +85,7 @@
             
         </div>
         <div style="text-align: center">
-            <form id="gridea-search-form" style="position: relative" data-update="1623985380947"
+            <form id="gridea-search-form" style="position: relative" data-update="1623985520956"
                 action="/search/">
                 <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
                 <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
@@ -217,7 +217,7 @@ git branch -d dev
 <p>那在哪干活呢？干活都在<code>dev</code>分支上，也就是说，<code>dev</code>分支是不稳定的，到某个时候，比如1.0版本发布时，再把<code>dev</code>分支合并到<code>master</code>上，在<code>master</code>分支发布1.0版本；</p>
 <p>你和你的小伙伴们每个人都在<code>dev</code>分支上干活，每个人都有自己的分支，时不时地往<code>dev</code>分支上合并就可以了。</p>
 </blockquote>
-<figure data-type="image" tabindex="1"><img src="https://icegiraffe.github.io/post-images/1623985315966.png" alt="git-br-policy" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://icegiraffe.github.io/post-images/1623985465222.png" alt="git-br-policy" loading="lazy"></figure>
 <h2 id="stash">stash</h2>
 <p>有时候，临时接到一个新的任务，可能需要先将当前的工作区和暂存区stash起来。由于不同分支之间，工作区和暂存区是共享的，因此不能随意的git checkout，这把未提交的工作区和暂存区内容直接移到新的分支上了，因此需要stash命令先保存上下文，当我们回到当前任务时，在恢复现场。下面是一个场景：</p>
 <pre><code class="language-shell">//将保留一个现场
