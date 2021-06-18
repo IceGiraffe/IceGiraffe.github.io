@@ -8,7 +8,7 @@
 <meta name="keywords" content="Gridea静态个人博客">
 <meta name="description" content="长颈鹿和大象都冻成冰块了！">
 <meta name="theme-color" content="#000">
-<title>Git学习笔记 | IceGiraffe&#39;s Blog</title>
+<title>IceGiraffe&#39;s Blog</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1623987019780">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
@@ -41,8 +41,6 @@
 
 
 
-  <meta name="description" content="Git学习笔记" />
-  <meta name="keywords" content="git" />
 </head>
 
 <body>
@@ -175,26 +173,10 @@
   <div class="main-continer">
     
     <div
-      class="section-layout gemini ">
+      class="section-layout  gemini">
       <div class="section-layout-wrapper">
-        
-
-<div class="sidebar">
-  
-    <div class="sidebar-box box-shadow-wrapper bg-color right-motion" id="sidebar">
-      
-        <div class="post-list-sidebar">
-          <div class="sidebar-title">
-            <span id="tocSideBar" class="sidebar-title-item sidebar-title-active language" data-lan="index">文章目录</span>
-            <span id="metaSideBar" class="sidebar-title-item language" data-lan="preview">站点概览</span>
-          </div>
-        </div>
-      
-      <div class="sidebar-body gemini" id="sidebar_body">
-        
-          
-            <div class="post-side-meta" id="post_side_meta">
-              
+        <div id="sidebarMeta" class="sidebar">
+    
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="/images/avatar.png"/>
@@ -239,583 +221,54 @@
 
 
 </div>
-            </div>
-            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
-              <div class="toc-box right-motion">
-  <div class="toc-wrapper auto-number auto"
-    id="toc_wrapper">
-    <ul class="markdownIt-TOC">
-<li><a href="#git%E5%9F%BA%E7%A1%80">Git基础</a>
-<ul>
-<li><a href="#%E5%88%9B%E5%BB%BA%E4%BB%93%E5%BA%93">创建仓库</a></li>
-<li><a href="#%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%92%8C%E6%9A%82%E5%AD%98%E5%8C%BA">工作区和暂存区</a></li>
-<li><a href="#%E7%89%88%E6%9C%AC%E5%9B%9E%E9%80%80">版本回退</a></li>
-<li><a href="#%E6%92%A4%E9%94%80%E4%BF%AE%E6%94%B9">撤销修改</a></li>
-<li><a href="#%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6">删除文件</a></li>
-</ul>
-</li>
-<li><a href="#git%E5%88%86%E6%94%AF">Git分支</a>
-<ul>
-<li><a href="#%E5%BC%95%E5%AD%90">引子</a></li>
-<li><a href="#%E8%A7%A3%E5%86%B3%E5%86%B2%E7%AA%81">解决冲突</a></li>
-<li><a href="#%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86%E7%AD%96%E7%95%A5">分支管理策略</a></li>
-<li><a href="#stash">stash</a></li>
-<li><a href="#%E5%A4%9A%E4%BA%BA%E5%8D%8F%E4%BD%9C">多人协作</a></li>
-<li><a href="#rebase">Rebase</a></li>
-</ul>
-</li>
-<li><a href="#git%E6%A0%87%E7%AD%BE">Git标签</a></li>
-<li><a href="#git%E8%BF%9C%E7%A8%8B">Git远程</a>
-<ul>
-<li><a href="#%E6%B7%BB%E5%8A%A0%E8%BF%9C%E7%A8%8B%E5%BA%93">添加远程库</a></li>
-<li><a href="#%E4%BB%8E%E8%BF%9C%E7%A8%8B%E5%BA%93%E5%85%8B%E9%9A%86">从远程库克隆</a></li>
-</ul>
-</li>
-<li><a href="#git-config">Git config</a>
-<ul>
-<li><a href="#gitignore">.gitignore</a></li>
-<li><a href="#git-alias">git alias</a></li>
-</ul>
-</li>
-<li><a href="#%E9%99%84%E5%BD%95">附录</a></li>
-</ul>
-
-  </div>
 </div>
-
 <script>
-
-  let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1;
-  let active = 'active-show', activeClass = 'active-current';
-  let tocWrapper = document.querySelector('#toc_wrapper');
-  let tocContent = tocWrapper.children[0];
-  let autoNumber = tocWrapper && tocWrapper.classList.contains('auto-number');
-
-  function addTocNumber(elem, deep) {
-    if (!elem) {
-      return;
-    }
-    let prop = elem.__proto__;
-
-    if (prop === HTMLUListElement.prototype) {
-      for (let i = 0; i < elem.children.length; i++) {
-        addTocNumber(elem.children[i], deep + (i + 1) + '.');
+  let sidebarMeta = document.querySelector('#sidebarMeta');
+  let scheme = 'gemini';
+  let sidebarWrapper = document.querySelector('.sidebar-wrapper');
+  if (sidebarMeta && (scheme === 'pisces' || scheme === 'gemini')) {
+    document.addEventListener('scroll', function(e) {
+      if (document.scrollingElement.scrollTop > parseInt(sidebarMeta.style.marginTop) + 10) {
+        sidebarWrapper.classList.add('home-sidebar-fixed')
+      } else {
+        sidebarWrapper.classList.remove('home-sidebar-fixed')
       }
-    } else if (prop === HTMLLIElement.prototype) {
-      // 保存li元素
-      if (elem.children[0] && elem.children[0].__proto__ === HTMLAnchorElement.prototype) {
-        lList.push(elem);
-      }
-      for (let i = 0; i < elem.children.length; i++) {
-        let cur = elem.children[i];
-        if (cur.__proto__ === HTMLAnchorElement.prototype) {
-          if (autoNumber) {
-            cur.text = deep + ' ' + cur.text;
-          }
-        } else if (cur.__proto__ === HTMLUListElement.prototype) {
-          addTocNumber(cur, deep);
-        }
-      }
-    }
-  }
-
-  function removeParentActiveClass() {
-    let parents = tocContent.querySelectorAll('.' + active)
-    parents.forEach(function (elem) {
-      elem.classList.remove(active);
     });
   }
-
-  function addActiveClass(index) {
-    if (index >= 0 && index < hList.length) {
-      lList[index].classList.add(activeClass);
-    }
-  }
-
-  function removeActiveClass(index) {
-    if (index >= 0 && index < hList.length) {
-      lList[index].classList.remove(activeClass);
-    }
-  }
-
-  function addActiveLiElemment(elem, parent) {
-    if (!elem || elem === parent) {
-      return;
-    } else {
-      if (elem.__proto__ === HTMLLIElement.prototype) {
-        elem.classList.add(active);
-      }
-      addActiveLiElemment(elem.parentElement, parent);
-    }
-  }
-
-  function showToc() {
-    if (tocWrapper) {
-      postBody = document.querySelector('#post_body');
-      for (let i = 0; i < postBody.children.length; i++) {
-        if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
-          hList.push(postBody.children[i]);
-        }
-      }
-      if (tocWrapper.classList.contains('compress')) {
-        tocContent.classList.add('closed');
-      } else if (tocWrapper.classList.contains('no_compress')) {
-        tocContent.classList.add('expanded');
-      } else {
-        if (hList.length > 10) {
-          active = 'active-hidden'
-          tocContent.classList.add('closed');
-        } else {
-          tocContent.classList.add('expanded');
-        }
-      }
-    }
-  }
-
-  (function () {
-    // 处理不是从#一级标题开始目录
-    if (tocContent.children.length === 1 && tocContent.children[0].__proto__ === HTMLLIElement.prototype) {
-      let con = tocContent.children[0].children[0];
-      tocContent.innerHTML = con.innerHTML;
-    }
-    let markdownItTOC = document.querySelector('.markdownIt-TOC');
-    let innerHeight = window.innerHeight;
-    markdownItTOC.style = `max-height: ${innerHeight - 80 > 0 ? innerHeight - 80 : innerHeight}px`
-    addTocNumber(tocContent, '');
-  })();
-
-  document.addEventListener('scroll', function (e) {
-    if (lList.length <= 0) {
-      return;
-    }
-    let scrollTop = document.scrollingElement.scrollTop + 10;
-    let dir;
-
-    if (lastTop - scrollTop > 0) {
-      dir = 'up';
-    } else {
-      dir = 'down';
-    }
-
-    lastTop = scrollTop;
-    if (scrollTop <= 0) {
-      if (lastIndex >= 0 && lastIndex < hList.length) {
-        lList[lastIndex].classList.remove(activeClass);
-      }
-      return;
-    }
-
-    let current = 0, hasFind = false;
-    for (let i = 0; i < hList.length; i++) {
-      if (hList[i].offsetTop > scrollTop) {
-        current = i;
-        hasFind = true;
-        break;
-      }
-    }
-    if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
-      current = hList.length - 1;
-    } else {
-      current--;
-    }
-    if (dir === 'down') {
-      if (current > lastIndex) {
-        addActiveClass(current);
-        removeActiveClass(lastIndex)
-        lastIndex = current;
-        removeParentActiveClass();
-        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
-      }
-    } else {
-      if (current < lastIndex) {
-        addActiveClass(current);
-        removeActiveClass(lastIndex);
-        lastIndex = current;
-        removeParentActiveClass();
-        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
-      }
-    }
-  });
-
-
-  window.addEventListener('load', function () {
-    showToc();
-    document.querySelector('#sidebar').style = 'display: block;';
-    tocWrapper.classList.add('toc-active');
-    setTimeout(function () {
-      if ("createEvent" in document) {
-        let evt = document.createEvent("HTMLEvents");
-        evt.initEvent("scroll", false, true);
-        document.dispatchEvent(evt);
-      }
-      else {
-        document.fireEvent("scroll");
-      }
-    }, 500)
-  })
-
-</script>
-            </div>
-          
-        
+  </script>
+        <div class="section-box tag-line box-shadow-wrapper">
+          <section class="section tags-section posts-expand bg-color">
+            <div class="padding-wrapper">
+  <div class="tag-timeline-box">
+    <div class="tag-timeline-wrapper">
+      <div class="tag-timeline-title">
+        <h2>
+          git
+          <small class="language" data-lan="tag">标签</small>
+        </h2>
       </div>
-    </div>
-  
-</div>
-<script>
-  const SIDEBAR_TITLE_ACTIVE = 'sidebar-title-active';
-  const SIDEBAR_BODY_ACTIVE = 'sidebar-body-active';
-  const SLIDE_UP_IN = 'slide-up-in';
-
-  let sidebar = document.querySelector('#sidebar'),
-  tocSideBar = document.querySelector('#tocSideBar'),
-  metaSideBar = document.querySelector('#metaSideBar'),
-  postToc = document.querySelector('#post_toc'),
-  postSiteMeta = document.querySelector('#post_side_meta'),
-  sidebarTitle = document.querySelector('.sidebar-title'),
-  sidebarBody = document.querySelector('#sidebar_body');
-
-  tocSideBar && tocSideBar.addEventListener('click', (e) => {
-    toggleSidebar(e);
-  });
-
-  metaSideBar && metaSideBar.addEventListener('click', (e) => {
-    toggleSidebar(e);
-  });
-
-  function toggleSidebar(e) {
-    let currentTitle = document.querySelector("."+SIDEBAR_TITLE_ACTIVE);
-    if (currentTitle == e.srcElement) {
-      return ;
-    }
-    let current, showElement, hideElement;
-    if (e.srcElement == metaSideBar) {
-      showElement = postSiteMeta;
-      hideElement = postToc;
-    } else if (e.srcElement == tocSideBar){
-      showElement = postToc;
-      hideElement = postSiteMeta;
-    }
-    currentTitle.classList.remove(SIDEBAR_TITLE_ACTIVE);
-    e.srcElement.classList.add(SIDEBAR_TITLE_ACTIVE);
-
-    jQuery.Velocity(hideElement, 'stop');
-    jQuery.Velocity(hideElement, 'transition.slideUpOut', {
-      display: 'none',
-      duration: 200,
-      complete: function () {
-        jQuery.Velocity(showElement, 'transition.slideDownIn', {
-          duration: 200
-        });
-      }
-    })
-    hideElement.classList.remove(SIDEBAR_BODY_ACTIVE);
-    showElement.classList.add(SIDEBAR_BODY_ACTIVE);
-  }
-
-  postToc && postToc.addEventListener('transitionend', function() {
-    this.classList.remove(SLIDE_UP_IN);
-  });
-
-  if (sidebarBody) {
-    if (sidebarBody.classList.contains('pisces') || sidebarBody.classList.contains('gemini')) {
-      let hasFix = false;
-      let scrollEl = document.querySelector('.main-continer');
-      let limitTop = document.querySelector('#nav_ul').children.length * 42 + 162;
-      window.addEventListener('scroll', function(e) {
-        if (document.scrollingElement.scrollTop >= limitTop) {
-          if (!hasFix) {
-            sidebar.classList.add('sidebar-fixed');
-            hasFix = true;
-          }
-        } else {
-          if (hasFix) {
-            sidebar.classList.remove('sidebar-fixed');
-            hasFix = false;
-          }
-        }
-      });
-    }
-  }
-  
-</script>
-        <div class="section-box box-shadow-wrapper">
-          <div class="section bg-color post post-page">
-            <section class="post-header">
-  <h1 class="post-title">
-    <a class="post-title-link" href="https://icegiraffe.github.io/post/git-xue-xi-bi-ji/">
-      Git学习笔记
-    </a>
-  </h1>
-  <div class="post-meta">
-    
-    <span class="meta-item pc-show">
-      <i class="fa fa-calendar-o"></i>
-      <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2021-06-18 10:55:18">2021-06-18</span>
-      <span class="post-meta-divider pc-show">|</span>
-    </span>
-    
-    <span class="meta-item">
-      <i class="fa fa-folder-o"></i>
-      <span class="pc-show language" data-lan="category-in">分类于</span>
       
       
-      <a href="https://icegiraffe.github.io/tag/5pWgcugP1/">
-        <span>git</span>
+      
+      <a href="https://icegiraffe.github.io/post/git-xue-xi-bi-ji/">
+        <div class="motion-warpper">
+          <div class="tag-post-node">
+            <h1>
+              06-18
+              <small>Git学习笔记</small>
+            </h1>
+          </div>
+        </div>
       </a>
       
       
-    </span>
-    <span class="post-meta-divider">|</span>
-    
-    <span class="meta-item">
-      <i class="fa fa-clock-o"></i>
-      <span>12<span class="language" data-lan="minute">分钟</span></span>
-    </span>
-    <span class="meta-item">
-      <span class="post-meta-divider">|</span>
-      <i class="fa fa-file-word-o"></i>
-      <span>2932<span class="pc-show language" data-lan="words">字数</span></span>
-    </span>
-    
-  </div>
-</section>
-            <div class="post-body next-md-body" id="post_body">
-              <p>本文是我的Git学习笔记，主要记录一些常用的命令，掌握这些命令，足够应付绝大多数场景下对Git的需求。</p>
-<p>本文主要来自廖雪峰的Git教程和Git官方文档。</p>
-<h1 id="git基础">Git基础</h1>
-<h2 id="创建仓库">创建仓库</h2>
-<p>要创建一个Git仓库，首先进入你想要创建仓库的文件夹，然后使用git init命令初始化。在创建仓库完成后，就可以自在地创建需要的文件，并对文件进行修改。</p>
-<h2 id="工作区和暂存区">工作区和暂存区</h2>
-<p>所谓工作区，就是pwd，你当前看到的文件就是工作区。在工作区和版本库中间，有一个暂存区，想要把新文件或修改后的文件放入仓库，只需要简单的两步，先用add命令将文件加入暂存区，然后使用commit命令将暂存区的文件commit到仓库中去即可。</p>
-<p>下面是廖雪峰教程下的一个评论，总结的挺好的</p>
-<blockquote>
-<p>Git管理的文件分为：工作区，版本库，版本库又分为暂存区stage和暂存区分支master(仓库)</p>
-<p>工作区&gt;&gt;&gt;&gt;暂存区&gt;&gt;&gt;&gt;仓库</p>
-<p>git add把文件从工作区&gt;&gt;&gt;&gt;暂存区，git commit把文件从暂存区&gt;&gt;&gt;&gt;仓库，</p>
-<p>git diff查看工作区和暂存区差异，</p>
-<p>git diff --cached查看暂存区和仓库差异，</p>
-<p>git diff HEAD 查看工作区和仓库的差异，</p>
-<p>git add的反向命令git checkout，撤销工作区修改，即把暂存区最新版本转移到工作区，</p>
-<p>git commit的反向命令git reset HEAD，就是把仓库最新版本转移到暂存区。</p>
-</blockquote>
-<pre><code class="language-shell">git add &lt;file&gt;
-git commit -m &quot;comment&quot;
-</code></pre>
-<h2 id="版本回退">版本回退</h2>
-<p>我个人理解，Git维护了一个树形结构来进行版本控制，HEAD指向哪个节点，哪个节点就是当前版本，使用命令git reset --hard commit_id即可进行版本的切换。</p>
-<p>关于commit_id，在Git中，HEAD代表当前版本，HEAD后面每有一个^代表上一个版本，当要回退的版本离HEAD较远时，也可以使用HEAD~&lt;number&gt;，这表示当前版本的前number个版本。</p>
-<p>如何获取版本id呢，对于过去的版本，可以使用git log命令，对于“将来”的版本，可以使用git reflog查看命令历史，以确定相应的commit_id。</p>
-<pre><code class="language-shell">git reset --hard commit_id
-</code></pre>
-<h2 id="撤销修改">撤销修改</h2>
-<p>如果暂存区还没有被修改，即还没有执行add命令，想要撤销工作区中的修改，或者向撤销上一次add之后对某个文件的修改，只需要调用git checkout -- &lt;file&gt;即可。这条命令把工作区的文件恢复到与暂存区相同。</p>
-<p>如果在add之后，我们想要把恢复到与版本库相同该如何操作呢？这需要两步，第一步，使用 git reset HEAD &lt;file&gt;，这条命令可以把暂存区的修改撤销掉（unstage），重新放回工作区；第二步，git checkout -- &lt;file&gt;.</p>
-<p>如果已经commit了，这时候进行撤销修改，实际上就是进行版本回退，参考上一部分。</p>
-<p>总结，两条指令：</p>
-<pre><code class="language-shell"># 将工作区的修改丢弃
-git checkout -- &lt;file&gt;
-# 将暂存区的修改撤销，重新放回工作区，意思就是把暂存区的扔掉，工作区的不变
-git reset HEAD &lt;file&gt;
-</code></pre>
-<h2 id="删除文件">删除文件</h2>
-<p>也有几种情况，git rm仿佛是git add的反向操作（只是在某些方面）。</p>
-<p>如果直接rm，然后我们需要再一次git rm删除暂存区的文件，然后git commit；也可以直接git rm，这会同时删除工作区和暂存区的文件，之后再commit。在commit之前，对于第一种情况，如果想撤销删除，只需要git checkout -- &lt;file&gt;即可，如果是后者，则需要git reset HEAD &lt;file&gt;。如果已经commit了，则需要版本回退。</p>
-<p>如果只想从仓库中删除某个文件，而保留本地的文件，加上--cached参数。</p>
-<h1 id="git分支">Git分支</h1>
-<h2 id="引子">引子</h2>
-<p>在引入分支之前，Git的若干个commit都是线性的；而如果我们想在某一个节点出发，进行不同的工作，比如我开发A部分，另一个好朋友开发B部分，最后再将我们的开发成果汇总，这时候就需要用到Git的分支管理。可以想象一棵树，在分开的节点创建了两个分支，那么就相当于该节点指向了两个子树，最后，我们可以通过merge合并进度。</p>
-<pre><code class="language-shell">git branch dev
-git checkout dev
-# switch to dev*
-git add &lt;file&gt;
-git commit &lt;file&gt;
-# a new commit on the new branch
-git checkout master
-git merge dev
-
-# then we can delete dev branch
-git branch -d dev
-</code></pre>
-<h2 id="解决冲突">解决冲突</h2>
-<p>git merge &lt;name&gt;命令的作用是把name分支和当前分支合并。merge只会影响当前分支，对被merge的分支不会造成任何影响。即从name分支引出一条边指向当前分支，当前分支也会产生一个新的节点。</p>
-<p>当Git无法自动合并分支时，就必须首先解决冲突。解决冲突后，再提交，合并完成。</p>
-<p>解决冲突就是把Git合并失败的文件手动编辑为我们希望的内容，再提交。</p>
-<p>用<code>git log --graph</code>命令可以看到分支合并图。用<code>git log --graph --pretty=oneline --abbrev-commit</code>直观一点点</p>
-<h2 id="分支管理策略">分支管理策略</h2>
-<p>注意到，刚刚提到merge之后，会产生一个新的节点，但Git默认情况下在fast-forward模式下工作（如果可能的话），在这种模式下，删除分支后，会丢掉分支信息。为了避免这种情况，可以使用--no-ff参数，表示不使用fast-forward合并分支。这样既保留了分支信息，也能从log中看出来，确实进行过merge操作。</p>
-<pre><code class="language-shell">*   commit 41528233f01acceb38e1ea142fb5ac90b955598c (HEAD -&gt; master)
-|\  Merge: c5a409b 48738dc
-| | Author: WangFY &lt;137204354@qq.com&gt;
-| | Date:   Fri Aug 28 08:12:48 2020 +0800
-| | 
-| |     Merge branch 'dev'
-| | 
-| * commit 48738dc1386ae49546ee4eca497edaa8d9e04d4d (dev)
-|/  Author: WangFY &lt;137204354@qq.com&gt;
-|   Date:   Fri Aug 28 08:12:22 2020 +0800
-|   
-|       dev
-|   
-*   commit c5a409ba96a37fdac6421471bec871ceb7372400 (origin/master)
-
-# 删除dev分支
-*   commit 41528233f01acceb38e1ea142fb5ac90b955598c (HEAD -&gt; master)
-|\  Merge: c5a409b 48738dc
-| | Author: WangFY &lt;137204354@qq.com&gt;
-| | Date:   Fri Aug 28 08:12:48 2020 +0800
-| | 
-| |     Merge branch 'dev'
-| | 
-| * commit 48738dc1386ae49546ee4eca497edaa8d9e04d4d
-|/  Author: WangFY &lt;137204354@qq.com&gt;
-|   Date:   Fri Aug 28 08:12:22 2020 +0800
-|   
-|       dev
-|   
-*   commit c5a409ba96a37fdac6421471bec871ceb7372400 (origin/master)
-</code></pre>
-<p>在实际开发中，我们应该按照几个基本原则进行分支管理：（摘自廖雪峰教程）</p>
-<blockquote>
-<p>首先，<code>master</code>分支应该是非常稳定的，也就是仅用来发布新版本，平时不能在上面干活；</p>
-<p>那在哪干活呢？干活都在<code>dev</code>分支上，也就是说，<code>dev</code>分支是不稳定的，到某个时候，比如1.0版本发布时，再把<code>dev</code>分支合并到<code>master</code>上，在<code>master</code>分支发布1.0版本；</p>
-<p>你和你的小伙伴们每个人都在<code>dev</code>分支上干活，每个人都有自己的分支，时不时地往<code>dev</code>分支上合并就可以了。</p>
-</blockquote>
-<figure data-type="image" tabindex="1"><img src="https://icegiraffe.github.io/post-images/1623985465222.png" alt="git-br-policy" loading="lazy"></figure>
-<h2 id="stash">stash</h2>
-<p>有时候，临时接到一个新的任务，可能需要先将当前的工作区和暂存区stash起来。由于不同分支之间，工作区和暂存区是共享的，因此不能随意的git checkout，这把未提交的工作区和暂存区内容直接移到新的分支上了，因此需要stash命令先保存上下文，当我们回到当前任务时，在恢复现场。下面是一个场景：</p>
-<pre><code class="language-shell">//将保留一个现场
-git stash
---------------
-  完成另外一个任务
---------------
-//列出现场
-git stash list
-//恢复现场有两种方法，记得当使用第一种方法时，要手动删除现场
-git stash apply &lt;stash@{id}&gt; //恢复现场，如果没有显示地指定stash@{id}则恢复栈顶的那个现场
-git stash pop    //弹出现场，栈顶现场删除了
-
-//删除现场
-git stash drop &lt;stash@{id}&gt;
-</code></pre>
-<p>还有一个指令，git cherry-pick &lt;commit_id&gt;。它可以复制某个commit到当前分支，这条指令会生成一个新的commit。</p>
-<h2 id="多人协作">多人协作</h2>
-<p>以下内容摘自廖雪峰的教程：</p>
-<ul>
-<li>查看远程库信息，使用<code>git remote -v</code>；</li>
-<li>本地新建的分支如果不推送到远程，对其他人就是不可见的；</li>
-<li>从本地推送分支，使用<code>git push origin branch-name</code>，如果推送失败，先用<code>git pull</code>抓取远程的新提交；</li>
-<li>在本地创建和远程分支对应的分支，使用<code>git checkout -b branch-name origin/branch-name</code>，本地和远程分支的名称最好一致；</li>
-<li>建立本地分支和远程分支的关联，使用<code>git branch --set-upstream branch-name origin/branch-name</code>；</li>
-<li>从远程抓取分支，使用<code>git pull</code>，如果有冲突，要先处理冲突。处理冲突的过程和本地类似，处理完成之后，再<code>pull</code>即可</li>
-</ul>
-<h2 id="rebase">Rebase</h2>
-<h1 id="git标签">Git标签</h1>
-<p>我个人理解，Git的标签就是给某一个commit起一个别名，这样可以让我们快速定位到某一个commit，Git的标签是和分支联系在一起的，只能看到当前分支的所有标签。</p>
-<p>命令如下：</p>
-<ul>
-<li>命令<code>git tag</code>用于新建一个标签，默认为<code>HEAD</code>，也可以指定一个commit id；</li>
-<li>命令<code>git tag -a -m &quot;your message&quot;</code>可以指定标签信息；</li>
-<li>命令<code>git tag</code>可以查看所有标签。命令<code>git show &lt;tagname&gt;</code>可以查看标签信息，包括标签的描述和commit的相关信息。</li>
-<li>命令<code>git tag -d &lt;name&gt;</code>可以删除标签</li>
-</ul>
-<p>远程相关的命令：</p>
-<ul>
-<li>命令<code>git push origin &lt;tagname&gt;</code>推送一个标签</li>
-<li>命令<code>git push origin --tags</code>推送所有标签</li>
-<li>命令<code>git push origin :refs/tags/&lt;tagname&gt;</code>删除远程标签</li>
-</ul>
-<h1 id="git远程">Git远程</h1>
-<h2 id="添加远程库">添加远程库</h2>
-<p>如果要使用github，需要添加SSH key.只需要使用ssh-keygen -t rsa -C &quot;youremail@example.com&quot;命令即可，然后在github上添加id_rsa.pub文件中的公钥即可。</p>
-<p>要关联一个远程库，使用命令<code>git remote add origin git@server-name:path/repo-name.git</code>；</p>
-<p>关联后，使用命令<code>git push -u origin master</code>第一次推送master分支的所有内容；</p>
-<p>此后，每次本地提交后，只要有必要，就可以使用命令<code>git push origin master</code>推送最新修改；</p>
-<p>分布式版本系统的最大好处之一是在本地工作完全不需要考虑远程库的存在，也就是有没有联网都可以正常工作，而SVN在没有联网的时候是拒绝干活的！当有网络的时候，再把本地提交推送一下就完成了同步，真是太方便了！</p>
-<h2 id="从远程库克隆">从远程库克隆</h2>
-<p>git clone</p>
-<h1 id="git-config">Git config</h1>
-<p>Git的配置文件包括全局配置和属于每个仓库的局部配置文件，局部配置的优先级最高。Git的全局配置文件是用户主目录下的隐藏文件<code>.gitconfig</code>，仓库的局部配置文件为<code>.git/config</code>。</p>
-<h2 id="gitignore">.gitignore</h2>
-<p>在.gitignore文件中，我们可以设置让Git忽略我们指定的文件。我们可以手动编写.gitignore，也可以在https://github.com/github/gitignore  中选择合适的文件。</p>
-<p>常用命令：</p>
-<pre><code class="language-shell">$ git add App.class
-The following paths are ignored by one of your .gitignore files:
-App.class
-Use -f if you really want to add them.
-
-$ git add -f App.class
-
-# 检查gitignore中是哪个规则导致无法正常添加文件
-$ git check-ignore -v App.class
-.gitignore:3:*.class	App.class
-</code></pre>
-<h2 id="git-alias">git alias</h2>
-<p><code>git config --global alias.lg &quot;log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset' --abbrev-commit&quot;</code></p>
-<h1 id="附录">附录</h1>
-<ul>
-<li>
-<p><a href="https://blog.csdn.net/ShuSheng0007/article/details/80791849">实际项目中如何使用Git做分支管理</a></p>
-</li>
-<li>
-<p><a href="https://github.github.com/training-kit/downloads/zh_CN/github-git-cheat-sheet/">GitHub Cheat Sheet 中文版</a></p>
-</li>
-<li>
-<p><a href="https://ndpsoftware.com/git-cheatsheet.html#loc=remote_repo;">Visual Git Cheat Sheet</a></p>
-</li>
-<li>
-<p><a href="https://gitee.com/liaoxuefeng/learn-java/raw/master/teach/git-cheatsheet.pdf">Another Cheat Sheet</a></p>
-</li>
-<li>
-<p><a href="https://git-scm.com/doc">Git 官方文档</a></p>
-</li>
-<li>
-<p><a href="https://learngitbranching.js.org/?demo=&amp;locale=zh_CN">Learn Git Branching</a></p>
-</li>
-</ul>
-
-            </div>
-            
-              <div class="reward-btn">
-                <div class="reward-btn-text">赞赏</div>
-              </div>
-            
-            
-              <div class="post-footer">
-  <ul class="post-copyright">
-    <li class="post-copyright-author">
-      <strong class="language" data-lan="author">本文作者：</strong>
-      IceGiraffe
-    </li>
-    <li class="post-copyright-link">
-      <strong class="language" data-lan="link">本文链接：</strong>
-      <a href="https://icegiraffe.github.io/post/git-xue-xi-bi-ji/" title="Git学习笔记">https://icegiraffe.github.io/post/git-xue-xi-bi-ji/</a>
-    </li>
-    <li class="post-copyright-license">
-      <strong class="language" data-lan="copyright">版权声明： </strong>
-      本博客所有文章除特别声明外，均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i> BY-NC-SA</a> 许可协议。转载请注明出处！
-    </li>
-  </ul>
-  <div class="tags">
-    
-      <a href="https://icegiraffe.github.io/tag/5pWgcugP1/"># git</a>
-    
-  </div>
-  <div class="nav">
-    <div class="nav-prev">
       
-    </div>
-    <div class="nav-next">
+      
       
     </div>
   </div>
 </div>
-            
-            
-  
-
-          </div>
+          </section>
         </div>
       </div>
     </div>
@@ -1024,229 +477,6 @@ $ git check-ignore -v App.class
     aelem.appendChild(image);
     parent.insertBefore(aelem, next);
   })
-</script>
-
-    <div class="reward-mask" style="display: none;">
-  <div class="reward-relative">
-    <span class="close" aria-hidden="true">x</span>
-    <div class="reward-body">
-      <h2>感谢您的支持，我会继续努力的!</h2>
-      <div class="reward-img-box">
-        <div style="position: relative; width: 140px; height: 140px;">
-          
-          
-          
-            <img id="wx" class="reward-img" src="\media\images\custom-wxImg.jpg" alt="赞赏码">
-          
-        </div>
-      </div>
-      <p class="reward-word">扫码打赏，你说多少就多少</p>
-      <p class="reward-tip"></p>
-    </div>
-    <div class="bottom">
-      
-      
-      <div id="wxBtn" class="pay-text">
-        微信支付
-      </div>
-      
-    </div>
-  </div>
-</div>
-<style>
-  .reward-mask {
-    position: fixed;
-    z-index: 99999;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: #00000054;
-  }
-
-  .reward-relative {
-    position: relative;
-    width: 480px;
-    text-align: center;
-    margin: 0 auto;
-    border-radius: 5px;
-    background-color: #fff;
-    top: 50%;
-    margin-top: -205px;
-  }
-
-  .reward-relative .close {
-    position: absolute;
-    right: 10px;
-    font-weight: normal;
-    font-size: 16px;
-    color: #929292;
-  }
-
-  .reward-body {
-    padding: 40px 20px 20px;
-  }
-
-  .bottom {
-    display: flex;
-  }
-
-  .reward-btn {
-    text-align: center;
-  }
-
-  .reward-btn-text {
-    display: inline-block;
-    cursor: pointer;
-    width: 60px;
-    height: 60px;
-    line-height: 60px;
-    border-radius: 50%;
-    background-color: #ff9734;
-    color: #FFF;
-    margin-top: 20px;
-  }
-
-  .pay-text {
-    margin-top: 10px;
-    padding: 10px;
-    flex: 1;
-    transition: all .2s linear;
-  }
-
-  .pay-text:hover {
-    background-color: #a5a5a536;
-  }
-
-  .reward-body h2 {
-    padding-top: 10px;
-    text-align: center;
-    color: #a3a3a3;
-    font-size: 16px;
-    font-weight: normal;
-    margin: 0 0 20px;
-  }
-
-  .reward-body h2:after,
-  .reward-body h2:before {
-    font-family: Arial, Helvetica, sans-serif;
-    background: 0 0;
-    width: 0;
-    height: 0;
-    font-style: normal;
-    color: #eee;
-    font-size: 80px;
-    position: absolute;
-    top: 20px;
-  }
-
-  .reward-body h2:before {
-    content: '\201c';
-    left: 50px;
-  }
-
-  .reward-body h2:after {
-    content: '\201d';
-    right: 80px;
-  }
-
-  .reward-img-box {
-    display: inline-block;
-    padding: 10px;
-    border: 6px solid #ea5f00;
-    margin: 0 auto;
-    border-radius: 3px;
-    position: relative;
-  }
-
-  .reward-img {
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    width: 100%;
-    height: 100%;
-  }
-
-  @media (max-width: 767px) {
-    .reward-relative {
-      height: 100%;
-      top: 0px;
-      margin-top: 0;
-      width: auto;
-    }
-
-    .reward-relative .bottom {
-      flex-direction: column;
-    }
-
-    .reward-relative .pay-text {
-      width: 80%;
-      margin: 5px auto;
-      border: 1px solid silver;
-      padding: 6px;
-      border-radius: 4px;
-    }
-
-    .reward-body h2:after {
-      right: 40px;
-    }
-
-    .reward-body h2:after,
-    .reward-body h2:before {
-      font-size: 60px;
-    }
-
-    .reward-body h2:before {
-      left: 20px;
-    }
-  }
-</style>
-<script>
-  !function () {
-    var mask = document.querySelector('.reward-mask');
-    let close = document.querySelector('.reward-relative .close');
-    let rewardBtn = document.querySelector('.reward-btn');
-
-    let zfb = document.querySelector('#zfb'),
-      wx = document.querySelector('#wx'),
-      zfbBtn = document.querySelector('#zfbBtn'),
-      wxBtn = document.querySelector('#wxBtn');
-
-    if (zfbBtn && wxBtn) {
-      zfbBtn.addEventListener('click', () => {
-        jQuery.Velocity(zfb, 'transition.slideLeftIn', {
-          duration: 400
-        });
-        jQuery.Velocity(wx, 'transition.slideRightOut', {
-          display: 'none',
-          duration: 400
-        });
-      });
-
-      wxBtn.addEventListener('click', () => {
-        jQuery.Velocity(wx, 'transition.slideRightIn', {
-          duration: 400
-        });
-        jQuery.Velocity(zfb, 'transition.slideLeftOut', {
-          display: 'none',
-          duration: 400
-        });
-      });
-    }
-
-    rewardBtn.addEventListener('click', (e) => {
-      jQuery.Velocity(mask, 'transition.slideDownIn', {
-        duration: 400
-      })
-    });
-
-    close.addEventListener('click', (e) => {
-      e.preventDefault();
-      jQuery.Velocity(mask, 'transition.slideUpOut', {
-        duration: 400
-      })
-    })
-  }()
 </script>
 
   </div>
@@ -1766,6 +996,7 @@ $ git check-ignore -v App.class
     speed: 200
   });
 </script>
+
 
 
 
